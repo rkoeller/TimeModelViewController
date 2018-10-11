@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AnalogClock;
+import android.widget.TextClock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
 		controllerTickAndUpdateThread = new Thread(theController);
 		controllerTickAndUpdateThread.start();
 
-		mSectionsPagerAdapter.addHomeFragment();
+		TextClock textClock = (TextClock) findViewById(R.id.textClock);
+		AnalogClock analogClock = (AnalogClock) findViewById(R.id.analogClock);
+
+		// mSectionsPagerAdapter.addHomeFragment();
 	}
 
 
