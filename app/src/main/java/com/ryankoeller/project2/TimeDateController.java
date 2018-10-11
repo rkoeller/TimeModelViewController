@@ -16,6 +16,9 @@ public class TimeDateController implements Runnable {
 		undoneActions = new Stack<>();
 	}
 
+	/**
+	 * Thread that increases the model's time
+	 */
 	@Override
 	public void run() {
 		while (true) {
@@ -32,6 +35,15 @@ public class TimeDateController implements Runnable {
 		}
 	}
 
+	/**
+	 *
+	 * @param year
+	 * @param month
+	 * @param date
+	 * @param hours
+	 * @param minutes
+	 * @param seconds
+	 */
 	public void setTimeDate(int year, int month, int date, int hours, int minutes, int seconds) {
 		ChangeDateAction newAction = new ChangeDateAction(timeDate.getTimeDate(),
 				new Date(year, month, date, hours, minutes, seconds));
@@ -40,12 +52,19 @@ public class TimeDateController implements Runnable {
 		undoneActions.clear();
 	}
 
+	/**
+	 *
+	 * @param date
+	 */
 	public void actionSetTimeDate(Date date) {
 		synchronized (timeDate) {
 			timeDate.setTimeDate(date.getTime());
 		}
 	}
 
+	/**
+	 * Increases the model's time by 1 second
+	 */
 	private void updateTime() {
 		synchronized (timeDate) {
 			timeDate.updateSeconds();
@@ -53,12 +72,18 @@ public class TimeDateController implements Runnable {
 
 	}
 
+	/**
+	 * @return The model's time
+	 */
 	public String getTimeDateToString() {
 		synchronized (timeDate) {
 			return timeDate.getTimeDate().toString();
 		}
 	}
 
+	/**
+	 * Undo's the last action
+	 */
 	public void undo() {
 		if (!doneActions.isEmpty()) {
 			undoneActions.push(doneActions.pop());
@@ -66,6 +91,9 @@ public class TimeDateController implements Runnable {
 		}
 	}
 
+	/**
+	 * Redo's the last undo
+	 */
 	public void redo() {
 		if (!undoneActions.isEmpty()) {
 			doneActions.push(undoneActions.pop());
@@ -73,6 +101,9 @@ public class TimeDateController implements Runnable {
 		}
 	}
 
+	/**
+	 * @return gets the TimeDateController singleton
+	 */
 	public static TimeDateController getInstance() {
 		return controller;
 	}

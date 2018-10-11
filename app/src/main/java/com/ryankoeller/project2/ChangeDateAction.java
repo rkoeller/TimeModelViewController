@@ -17,13 +17,19 @@ public class ChangeDateAction extends Action
 		this.startDate.setTime(startDate.getTime());
 		this.changedToDate.setTime(changedToDate.getTime());
 	}
-	
+
+	/**
+	 * Changes the model's date by using the controller
+	 */
 	@Override
 	public void doIt()
 	{
 		tdc.actionSetTimeDate(changedToDate);
 	}
 
+	/**
+	 * Changes the model's date back by using the controller
+	 */
 	@Override
 	public void undoIt()
 	{

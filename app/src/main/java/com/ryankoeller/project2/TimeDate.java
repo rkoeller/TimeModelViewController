@@ -11,12 +11,25 @@ public class TimeDate
 	{
 		myDate = new Date();
 	}
-	
+
+	/**
+	 * Changes the date
+	 * @param time
+	 */
 	public void setTimeDate(long time)
 	{
 		myDate.setTime(time);
 	}
-	
+
+	/**
+	 * Changes the date
+	 * @param year
+	 * @param month
+	 * @param date
+	 * @param hours
+	 * @param minutes
+	 * @param seconds
+	 */
 	public void setTimeDate(int year, int month, int date, int hours, int minutes, int seconds)
 	{
 		myDate.setYear(year);
@@ -27,11 +40,17 @@ public class TimeDate
 		myDate.setSeconds(seconds);
 	}
 
+	/**
+	 * Ticks the seconds by one
+	 */
 	public void updateSeconds()
 	{
 		myDate.setSeconds(myDate.getSeconds() + 1);
 	}
 
+	/**
+	 * @return The date
+	 */
 	public Date getTimeDate()
 	{
 		return myDate;
